@@ -10,3 +10,9 @@
     width: 90px;
     height: 90px;
 }
+.sideA {
+    transform: scaleX(1);
+}
+.sideB {
+    transform: scaleX(-1);
+}
