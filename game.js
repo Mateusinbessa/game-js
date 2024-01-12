@@ -9,9 +9,14 @@ function adjustSizeOfGameContainer() {
     //Returning the height and the width as an object!
     return { height, width }
 }
-const { height, width } = adjustSizeOfGameContainer()
 
 function randomPosition(height, width) {
+
+    //remover o mosquito anterior
+    if (document.querySelector('#mosquito')) {
+        document.querySelector('#mosquito').remove()
+    }
+
     // Generate random values for X and Y positions within the given width and height
     let positionX = Math.floor(Math.random() * width) - 90
     let positionY = Math.floor(Math.random() * height) - 90
@@ -30,12 +35,12 @@ function randomPosition(height, width) {
     mosquito.style.left = positionX + 'px'
     mosquito.style.top = positionY + 'px'
     mosquito.style.position = 'absolute'
+    mosquito.id = 'mosquito'
 
     // Append the image element to the body of the document
     document.body.appendChild(mosquito)
 
 }
-randomPosition(height, width)
 
 function randonHeight() {
     let classe = Math.floor(Math.random() * 3)
@@ -60,4 +65,9 @@ function randomSide() {
 
     }
 }
+
+const { height, width } = adjustSizeOfGameContainer()
+setInterval(() => {
+    randomPosition(height, width)
+}, 1000)
 
