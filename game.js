@@ -1,3 +1,4 @@
+let lifes = 1
 function adjustSizeOfGameContainer() {
     //Adjusts the size of the game stage based on the height and width of the window.
     let height = window.innerHeight
@@ -15,6 +16,11 @@ function randomPosition(height, width) {
     //remover o mosquito anterior
     if (document.querySelector('#mosquito')) {
         document.querySelector('#mosquito').remove()
+        if(lifes > 3) {
+            alert('Interromper o jogo (Ganve over)')
+        }
+        document.querySelector('#v' + lifes).src = "/images/coracao_vazio.png"
+        lifes++
     }
 
     // Generate random values for X and Y positions within the given width and height
@@ -36,6 +42,9 @@ function randomPosition(height, width) {
     mosquito.style.top = positionY + 'px'
     mosquito.style.position = 'absolute'
     mosquito.id = 'mosquito'
+    mosquito.onclick = () => {
+        mosquito.remove()
+    }
 
     // Append the image element to the body of the document
     document.body.appendChild(mosquito)
@@ -69,5 +78,5 @@ function randomSide() {
 const { height, width } = adjustSizeOfGameContainer()
 setInterval(() => {
     randomPosition(height, width)
-}, 1000)
+}, 2000)
 
