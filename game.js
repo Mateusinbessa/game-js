@@ -1,4 +1,5 @@
 let lifes = 1
+let time = 10
 function adjustSizeOfGameContainer() {
     //Adjusts the size of the game stage based on the height and width of the window.
     let height = window.innerHeight
@@ -76,7 +77,22 @@ function randomSide() {
 }
 
 const { height, width } = adjustSizeOfGameContainer()
-setInterval(() => {
+
+let cronometro = setInterval(() => {
+    time -= 1
+    if (time < 0) {
+        clearInterval(cronometro)
+        clearInterval(criaMosquito)
+        alert('Vitoria')
+    } else {
+        document.querySelector("#cronometro").innerHTML = time
+    }
+
+}, 1000)
+
+document.querySelector("#cronometro").innerHTML = time
+
+let criaMosquito = setInterval(() => {
     randomPosition(height, width)
-}, 2000)
+}, 1000)
 
