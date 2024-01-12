@@ -83,7 +83,7 @@ let cronometro = setInterval(() => {
     if (time < 0) {
         clearInterval(cronometro)
         clearInterval(criaMosquito)
-        alert('Vitoria')
+        window.location.href = 'vitoria.html'
     } else {
         document.querySelector("#cronometro").innerHTML = time
     }
