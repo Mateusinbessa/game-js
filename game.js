@@ -26,15 +26,27 @@ function randomPosition(height, width) {
     // Create an image element
     let mosquito = document.createElement('img')
     mosquito.src = './images/mosquito.png'
-    mosquito.className = 'mosquito1'
+    mosquito.className = randonHeight()
     mosquito.style.left = positionX + 'px'
     mosquito.style.top = positionY + 'px'
     mosquito.style.position = 'absolute'
 
     // Append the image element to the body of the document
     document.body.appendChild(mosquito)
+
 }
 randomPosition(height, width)
 
+function randonHeight() {
+    let classe = Math.floor(Math.random() * 3)
+    switch(classe) {
+        case 0:
+            return 'mosquito1'
+        case 1: 
+            return 'mosquito2'
+        case 2:
+            return 'mosquito3'
 
+    }
+}
 
