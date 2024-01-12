@@ -17,7 +17,7 @@ function randomPosition(height, width) {
     if (document.querySelector('#mosquito')) {
         document.querySelector('#mosquito').remove()
         if(lifes > 3) {
-            alert('Interromper o jogo (Ganve over)')
+            window.location.href = 'fim_de_jogo.html'
         }
         document.querySelector('#v' + lifes).src = "/images/coracao_vazio.png"
         lifes++
