@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Game :: Menu</title>
+	<script>
+		function iniciarJogo() {
+			var nivel = document.getElementById('nivel').value
+
+			if (nivel === '') {
+				alert('Selecione um nível para iniciar o jogo')
+				return false
+			}
+
+			alert(nivel)
+
+		}
+	</script>
+	<link rel="stylesheet" href="../style/style.css" />
+</head>
+
+<body>
+	<div>
+		<img src="../assets/game.png" />
+	</div>
+
+	<div>
+		<select id="nivel">
+			<option>-- Selecione o nível --</option>
+			<option value="normal">Normal</option>
+			<option value="dificil">Difícil</option>
+			<option value="chucknorris">Chuck Norris</option>
+		</select>
+	</div>
+
+	<div>
+		<button onclick="iniciarJogo()">Iniciar Jogo</button>
+	</div>
+</body>
+
+</html>

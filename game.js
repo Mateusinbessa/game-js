@@ -1,26 +1,22 @@
 let lifes = 1
 let time = 10
-function adjustSizeOfGameContainer() {
-    //Adjusts the size of the game stage based on the height and width of the window.
-    let height = window.innerHeight
-    let width = window.innerWidth
-    
-    //Logging the height and the width of the window
-    console.log("Tela do jogo: " + height, width)
 
-    //Returning the height and the width as an object!
+function adjustSizeOfGameContainer() {
+    //getting the actual height and width of the screen
+    let height = window.innerHeight 
+    let width = window.innerWidth
     return { height, width }
-}
+} const { height, width } = adjustSizeOfGameContainer()
 
 function randomPosition(height, width) {
-
-    //remover o mosquito anterior
+    //remove the previous fly, if the user not clicked to remove in time
     if (document.querySelector('#mosquito')) {
         document.querySelector('#mosquito').remove()
-        if(lifes > 3) {
+        if (lifes > 3) {
             window.location.href = 'fim_de_jogo.html'
         }
-        document.querySelector('#v' + lifes).src = "/images/coracao_vazio.png"
+        //TODO: Abstraction --> Make it a function
+        document.querySelector('#v' + lifes).src = "../assets/coracao_vazio.png"
         lifes++
     }
 
@@ -32,18 +28,16 @@ function randomPosition(height, width) {
     positionX = Math.max(0, positionX)
     positionY = Math.max(0, positionY)
 
-    //Logging the random position
-    console.log("Posicao randomica: " + positionY, positionX)
-
-    // Create an image element
+    // Creating an image node
     let mosquito = document.createElement('img')
-    mosquito.src = './images/mosquito.png'
+    mosquito.src = '../assets/mosquito.png'
     mosquito.className = randonHeight() + ' ' + randomSide()
+    mosquito.style.position = 'absolute'
     mosquito.style.left = positionX + 'px'
     mosquito.style.top = positionY + 'px'
-    mosquito.style.position = 'absolute'
     mosquito.id = 'mosquito'
-    mosquito.onclick = () => {
+    mosquito.onclick = (e) => {
+        e.stopPropagation()
         mosquito.remove()
     }
 
@@ -54,10 +48,10 @@ function randomPosition(height, width) {
 
 function randonHeight() {
     let classe = Math.floor(Math.random() * 3)
-    switch(classe) {
+    switch (classe) {
         case 0:
             return 'mosquito1'
-        case 1: 
+        case 1:
             return 'mosquito2'
         case 2:
             return 'mosquito3'
@@ -67,17 +61,26 @@ function randonHeight() {
 
 function randomSide() {
     let classe = Math.floor(Math.random() * 2)
-    switch(classe) {
+    switch (classe) {
         case 0:
             return 'sideA'
-        case 1: 
+        case 1:
             return 'sideB'
 
     }
 }
 
-const { height, width } = adjustSizeOfGameContainer()
+const body = document.querySelector('body')
+body.addEventListener("click", () => {
+    if (lifes > 3) {
+        window.location.href = 'fim_de_jogo.html'
+    }
+    document.querySelector('#v' + lifes).src = "/images/coracao_vazio.png"
+    lifes++
+})
 
+//Initializating the stopwatch in the init of the game
+document.querySelector("#cronometro").innerHTML = time
 let cronometro = setInterval(() => {
     time -= 1
     if (time < 0) {
@@ -89,8 +92,6 @@ let cronometro = setInterval(() => {
     }
 
 }, 1000)
-
-document.querySelector("#cronometro").innerHTML = time
 
 let criaMosquito = setInterval(() => {
     randomPosition(height, width)
