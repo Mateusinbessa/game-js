@@ -13,7 +13,7 @@ function randomPosition(height, width) {
     if (document.querySelector('#mosquito')) {
         document.querySelector('#mosquito').remove()
         if (lifes > 3) {
-            window.location.href = 'fim_de_jogo.html'
+            window.location.href = 'gameover/gameover.html'
         }
         //TODO: Abstraction --> Make it a function
         document.querySelector('#v' + lifes).src = "../assets/coracao_vazio.png"
@@ -73,7 +73,7 @@ function randomSide() {
 const body = document.querySelector('body')
 body.addEventListener("click", () => {
     if (lifes > 3) {
-        window.location.href = 'fim_de_jogo.html'
+        window.location.href = 'gameover/gameover.html'
     }
     document.querySelector('#v' + lifes).src = "/images/coracao_vazio.png"
     lifes++
@@ -86,7 +86,7 @@ let cronometro = setInterval(() => {
     if (time < 0) {
         clearInterval(cronometro)
         clearInterval(criaMosquito)
-        window.location.href = 'vitoria.html'
+        window.location.href = 'victory/victory.html'
     } else {
         document.querySelector("#cronometro").innerHTML = time
     }

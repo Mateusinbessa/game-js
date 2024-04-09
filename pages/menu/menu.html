@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Game :: Menu</title>
+	<script>
+		function iniciarJogo() {
+			var nivel = document.getElementById('nivel').value
+			window.location.href = '../app.html'
+		}
+	</script>
+	<link rel="stylesheet" href="../../style/menu.css" />
+</head>
+
+<body>
+	<section id="container">
+		<h1>Capture <span style="color: crimson;">a</span> <span style="color: blue;">loira</span></h1>
+		<div>
+			<img src="../../assets/game.png" />
+		</div>
+
+		<div class="select">
+			<section>
+				<select id="nivel">
+					<option value="normal">Normal</option>
+					<option value="dificil">Difícil</option>
+					<option value="chucknorris">Chuck Norris</option>
+				</select>
+			</section>
+			<section>
+				<button onclick="iniciarJogo()">Iniciar Jogo</button>
+			</section>
+		</div>
+
+	</section>
+</body>
+
+</html>
